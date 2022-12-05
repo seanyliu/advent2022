@@ -4,7 +4,8 @@ def read_lines_from_file(file_name):
   input_file.close()
   cleaned_lines = []
   for line in input_lines:
-    cleaned_lines.append(line.strip())
+    cleaned_lines.append(line.strip('\n'))
+    #cleaned_lines.append(line)
   return cleaned_lines
 
 def convert_array_to_int(arr):
