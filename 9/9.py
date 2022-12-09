@@ -13,13 +13,15 @@ input_lines = helpers.read_lines_from_file('input.txt')
 def updateTail(H, T):
     deltaX = H[0] - T[0]
     deltaY = H[1] - T[1]
-    if abs(deltaX) >= 2 and abs(deltaY) >= 1:
+    if abs(deltaX) >= 2 and abs(deltaY) >= 2:
+        T = (T[0] + deltaX - int(deltaX/abs(deltaX)), T[1] + deltaY - int(deltaY/abs(deltaY)))
+    elif abs(deltaX) >= 2 and abs(deltaY) >= 1:
         T = (T[0] + deltaX - int(deltaX/abs(deltaX)), T[1] + deltaY)
     elif abs(deltaX) >= 1 and abs(deltaY) >= 2:
         T = (T[0] + deltaX, T[1] + deltaY - int(deltaY/abs(deltaY)))
-    elif abs(deltaX) > 1:
+    elif abs(deltaX) >= 2:
         T = (T[0] + deltaX - int(deltaX/abs(deltaX)), T[1])
-    elif abs(deltaY) > 1:
+    elif abs(deltaY) >= 2:
         T = (T[0], T[1] + deltaY - int(deltaY/abs(deltaY)))
     return T
     
@@ -54,11 +56,18 @@ for line in input_lines:
             rope[i+1] = T
         
         #print ("H: "+str(H)+", T: "+str(rope[len(rope)-1]))
+        #print (rope)
         visited.add(rope[len(rope)-1])
         
     #print (direction + " " + str(distance))
 
-#print(visited)
+l = []
+for visit in visited:
+    l.append(visit)
+l.sort()
+
+print("visited: ")
+print(l)
 print(len(visited))
 
 # Part 2 #################################
