@@ -28,16 +28,41 @@ def get_grid_from_lines(input_lines):
     y = y+1
   return grid
 
+def get_grid_max_y(grid):
+  min_x = min(grid.keys())
+  max_x = max(grid.keys())
+  min_y = min(grid[min_x].keys())
+  max_y = max(grid[min_x].keys())
+  for x in range(int(min_x), int(max_x)+1):
+    if x in grid:
+      for key in grid[x]:
+        if key < min_y:
+          min_y = key
+        if key > max_y:
+          max_y = key
+  return max_y
+
 def print_grid(grid):
-  min_y = min(grid[0].keys())
-  max_y = max(grid[0].keys())
-  for y in range(min_y, max_y+1):
-    line = ""
-    min_x = min(grid.keys())
-    max_x = max(grid.keys())
+  min_x = min(grid.keys())
+  max_x = max(grid.keys())
+  min_y = min(grid[min_x].keys())
+  max_y = max(grid[min_x].keys())
+  for x in range(int(min_x), int(max_x)+1):
+    if x in grid:
+      for key in grid[x]:
+        if key < min_y:
+          min_y = key
+        if key > max_y:
+          max_y = key
+    
+  for y in range(min_y, int(max_y)+1):
+    line = ""  
     for x in range(min_x, max_x+1):
       #print(str(x) + "," + str(y) + "=" + grid[x][y])
-      line = line + str(grid[x][y])
+      output = "."
+      if (x in grid and y in grid[x]):
+        output = str(grid[x][y])
+      line = line + output
     print(line)
 
 def get_grid_col_count(grid):
