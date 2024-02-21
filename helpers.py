@@ -42,7 +42,7 @@ def get_grid_max_y(grid):
           max_y = key
   return max_y
 
-def print_grid(grid):
+def get_grid_max_x(grid):
   min_x = min(grid.keys())
   max_x = max(grid.keys())
   min_y = min(grid[min_x].keys())
@@ -54,6 +54,41 @@ def print_grid(grid):
           min_y = key
         if key > max_y:
           max_y = key
+  return max_x
+
+def get_grid_min_x(grid):
+  min_x = min(grid.keys())
+  max_x = max(grid.keys())
+  min_y = min(grid[min_x].keys())
+  max_y = max(grid[min_x].keys())
+  for x in range(int(min_x), int(max_x)+1):
+    if x in grid:
+      for key in grid[x]:
+        if key < min_y:
+          min_y = key
+        if key > max_y:
+          max_y = key
+  return min_x
+
+def get_grid_min_y(grid):
+  min_x = min(grid.keys())
+  max_x = max(grid.keys())
+  min_y = min(grid[min_x].keys())
+  max_y = max(grid[min_x].keys())
+  for x in range(int(min_x), int(max_x)+1):
+    if x in grid:
+      for key in grid[x]:
+        if key < min_y:
+          min_y = key
+        if key > max_y:
+          max_y = key
+  return min_y
+
+def print_grid(grid):
+  min_x = get_grid_min_x(grid)
+  max_x = get_grid_max_x(grid)
+  min_y = get_grid_min_y(grid)
+  max_y = get_grid_max_y(grid)
     
   for y in range(min_y, int(max_y)+1):
     line = ""  
